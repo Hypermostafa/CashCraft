@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Expense Chart</title>
+    <link rel="stylesheet" href="trypage.css">
+</head>
+<body>
+    <!-- Back Button positioned at top-left -->
+    <button onclick="window.history.back()" class="back-button">Back</button>
+    
+    <h1>Dynamic Expense Chart</h1>
+    <button onclick="toggleForm()">Add New Plan</button>
+
+    <!-- Modal -->
+    <div id="modalBackground">
+        <div id="inputForm">
+            <button id="closeButton" onclick="toggleForm()">X</button>
+            <input type="number" id="totalAmount" placeholder="Total Amount">
+            <input type="number" id="transportation" placeholder="Transportation">
+            <input type="number" id="food" placeholder="Food">
+            <input type="number" id="education" placeholder="Education">
+            <input type="number" id="entertainment" placeholder="Entertainment">
+            <button onclick="drawChart()">Create Chart</button>
+        </div>
+    </div>
+
+    <div id="chartContainer">
+        <canvas id="chartCanvas"></canvas>
+    </div>
+    
+    <div id="selectedCategory"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="trypage.js"></script>
+</body>
+</html>

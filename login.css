@@ -1,0 +1,219 @@
+/* Apply box-sizing to all elements to ensure padding and border are included in width/height */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #084f5a;
+    --secondary-color: #6099a5;
+    --hover-color: #555;
+    --background-color: #f9f9f9;
+    --text-color: #333;
+    --border-radius: 10px;
+    --transition-time: 0.3s;
+    --scrollbar-thumb-color: #888;
+    --scrollbar-track-color: #f1f1f1;
+    --loader-color: #f2f2f2;
+    --loader-border-color: #000;
+    --loader-border-top-color: transparent;
+    --header-padding: 2rem;
+    --nav-padding: 10px 0;
+    --font-family: Arial, sans-serif;
+    --background-image: url('counting moeny.jpg');
+    --overlay-background: rgba(0, 0, 0, 0.5);
+} 
+/* General Styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, white, white);
+    color: var(--loader-border-color)
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Image Section */
+.login-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 1s ease-out;
+}
+
+.login-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8);
+    transition: transform 0.5s ease;
+}
+
+.login-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Form Section */
+.login-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: #333;
+    animation: fadeIn 1.5s ease;
+}
+
+.login-form h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #f9f9f9;
+    text-transform: uppercase;
+    animation: textGlow 2s infinite alternate;
+}
+
+/* Back Button */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.back-button:hover {
+    background: #333;
+}
+
+/* Form Container */
+.login-form .form-container {
+    background: #f0f0f0;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form .form-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Inputs */
+.login-form input {
+    margin-bottom: 2rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    border: 2px solid #ccc;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    color: #333;
+    width: 100%;
+    max-width: 350px;
+}
+
+.login-form input::placeholder {
+    color: #888;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.login-form input:focus {
+    box-shadow: 0 0 12px rgba(14, 15, 15, 0.6);
+    border-color: #333;
+    background-color: #fff;
+    outline: none;
+    transform: scale(1.05);
+}
+
+.login-form input:hover {
+    border-color: var(--primary-color);
+}
+
+/* Buttons */
+.login-form button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    background: var(--secondary-color);
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-left: 9rem;
+}
+
+.login-form button:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Links */
+.links p {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.signup-link,
+.forgot-password-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.signup-link:hover,
+.forgot-password-link:hover {
+    color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes textGlow {
+    from {
+        text-shadow: 0 0 8px #fff, 0 0 16px var(--secondary-color);
+    }
+    to {
+        text-shadow: 0 0 16px #333, 0 0 24px var(--primary-color);
+    }
+}

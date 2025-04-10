@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CashCraft - Dashboard</title>
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Add this script right after body tag -->
+    <script>
+        // Check and apply theme immediately
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('darkmode');
+        }
+    </script>
+
+    <div class="sidebar">
+        <div class="logo">
+            <span>CashCraft</span>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="homepage.html"><i class="fas fa-wallet"></i> Your Plans</a>
+                </li>
+                <li class="active">
+                    <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="#community"><i class="fas fa-users"></i> Community</a>
+                </li>
+                <li>
+                    <a href="#articles"><i class="fas fa-book-reader"></i> Articles</a>
+                </li>
+                <li>
+                    <a href="#videos"><i class="fas fa-video"></i> Videos</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="user-profile">
+            <img src="IMG-20240719-WA0002.jpg" alt="Profile" class="avatar">
+            <span class="username">Mostafa</span>
+            <button onclick="window.location.href='index.html'" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Remove the inline script and keep only one theme toggle handler -->
+        <div class="header">
+            <h1>Dashboard</h1>
+            <div class="user-actions">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <h3>Total Cost</h3>
+                    <div class="stat-value" id="totalCost">$0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Net Amount</h3>
+                    <div class="stat-value" id="netAmount">$0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Transport</h3>
+                    <div class="stat-value" id="transport">$0</div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <h3>Food</h3>
+                    <div class="stat-value" id="food">$0</div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Replace all theme-related scripts with this single script at the bottom -->
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+    
+        function updateThemeIcon(isDark) {
+            themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    
+        // Initial theme state
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        updateThemeIcon(isDarkMode);
+    
+        // Theme toggle handler
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('darkmode');
+            const isDarkMode = document.body.classList.contains('darkmode');
+            localStorage.setItem('darkMode', isDarkMode);
+            updateThemeIcon(isDarkMode);
+        });
+    
+        // Load and display plan data
+        const planData = JSON.parse(localStorage.getItem('firstPlan'));
+        if (planData) {
+            document.getElementById('totalCost').textContent = `$${planData.total.toFixed(2)}`;
+            document.getElementById('netAmount').textContent = `$${planData.netAmount || 0}`;
+            document.getElementById('transport').textContent = `$${planData.transport || 0}`;
+            document.getElementById('food').textContent = `$${planData.food || 0}`;
+    
+            // Update progress bars
+            const transportProgress = (planData.transport / planData.total) * 100;
+            const foodProgress = (planData.food / planData.total) * 100;
+            document.querySelector('#transport + .progress-bar .progress').style.width = `${transportProgress}%`;
+            document.querySelector('#food + .progress-bar .progress').style.width = `${foodProgress}%`;
+        }
+    </script>
+</body>
+</html>

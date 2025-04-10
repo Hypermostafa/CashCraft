@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Plan - CashCraft</title>
+    <link rel="stylesheet" href="addplan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Your Spending Plan</h1>
+        <div class="progress-bar">
+            <div class="step active">
+                <div class="step-number">1</div>
+                <div class="step-text">Choose Categories</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-text">Set Budget</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-text">Review</div>
+            </div>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Food & Dining</h3>
+                <p>Restaurants, groceries, and snacks</p>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-bus"></i>
+                <h3>Transportation</h3>
+                <p>Public transit, fuel, and rides</p>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Education</h3>
+                <p>Courses, books, and supplies</p>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-shopping-bag"></i>
+                <h3>Shopping</h3>
+                <p>Clothes, accessories, and personal items</p>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-home"></i>
+                <h3>Housing</h3>
+                <p>Rent, utilities, and maintenance</p>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-heartbeat"></i>
+                <h3>Healthcare</h3>
+                <p>Medical expenses and insurance</p>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-gamepad"></i>
+                <h3>Entertainment</h3>
+                <p>Movies, games, and hobbies</p>
+            </div>
+            <div class="category-card" id="other-card">
+                <i class="fas fa-plus-circle"></i>
+                <h3>Other</h3>
+                <p>Miscellaneous expenses</p>
+                <div class="custom-input" style="display: none;">
+                    <input type="text" placeholder="Enter category name" id="custom-category">
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button onclick="window.location.href='homepage.html'" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="next-btn">
+                Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check and apply dark mode on page load
+        if (localStorage.getItem('darkmode') === 'active') {
+            document.body.classList.add('darkmode');
+        }
+    });
+</script>
+<script>
+    const cards = document.querySelectorAll('.category-card');
+    const nextBtn = document.querySelector('.next-btn');
+    const selectedCategories = new Set();
+    const otherCard = document.getElementById('other-card');
+    const customInput = document.querySelector('.custom-input');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            if (card.id === 'other-card') {
+                card.classList.toggle('selected');
+                customInput.style.display = card.classList.contains('selected') ? 'block' : 'none';
+                if (card.classList.contains('selected')) {
+                    document.getElementById('custom-category').focus();
+                }
+            } else {
+                card.classList.toggle('selected');
+            }
+
+            if (card.classList.contains('selected')) {
+                selectedCategories.add(card.querySelector('h3').textContent);
+            } else {
+                selectedCategories.delete(card.querySelector('h3').textContent);
+            }
+            nextBtn.disabled = selectedCategories.size === 0;
+        });
+    });
+
+    document.getElementById('custom-category').addEventListener('input', (e) => {
+        const customValue = e.target.value.trim();
+        const otherCard = document.getElementById('other-card');
+        const otherTitle = otherCard.querySelector('h3');
+        
+        if (customValue) {
+            selectedCategories.delete('Other');
+            selectedCategories.add(customValue);
+            otherTitle.textContent = customValue;
+        } else {
+            selectedCategories.add('Other');
+            otherTitle.textContent = 'Other';
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (selectedCategories.size > 0) {
+            localStorage.setItem('selectedCategories', JSON.stringify([...selectedCategories]));
+            // Mark current step as completed and activate next step
+            const currentStep = document.querySelector('.step.active');
+            currentStep.classList.add('completed');
+            currentStep.classList.remove('active');
+            currentStep.nextElementSibling.classList.add('active');
+            // Navigate to next page
+            window.location.href = 'plandetails.html';
+        }
+    });
+</script>

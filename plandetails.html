@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Details - CashCraft</title>
+    <link rel="stylesheet" href="plandetails.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Your Spending Details</h1>
+        <div class="progress-bar">
+            <div class="step completed">
+                <div class="step-number">1</div>
+                <div class="step-text">Choose Categories</div>
+            </div>
+            <div class="step active">
+                <div class="step-number">2</div>
+                <div class="step-text">Set Budget</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-text">Review</div>
+            </div>
+        </div>
+        
+        <div class="plan-name-section">
+            <input type="text" id="plan-name" placeholder="Enter Plan Name" value="New Plan">
+            <select id="currency-select">
+                <option value="EUR">EUR (€)</option>
+                <option value="USD">USD ($)</option>
+                <option value="EGP">EGP (E£)</option>
+            </select>
+        </div>
+
+        <div class="spending-form" id="spending-form">
+            <!-- Categories will be added here -->
+        </div>
+        
+        <div class="total-section">
+            <h2>Total Budget: <span id="total-amount">€0</span></h2>
+        </div>
+        
+        <div class="buttons">
+            <button onclick="window.location.href='addplan.html'" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="save-btn" id="save-btn">
+                Save Plan <i class="fas fa-check"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dark mode check
+            const darkmode = localStorage.getItem('darkmode');
+            if (darkmode === 'active') {
+                document.body.classList.add('darkmode');
+            }
+
+            // Initialize form
+            const selectedCategories = JSON.parse(localStorage.getItem('selectedCategories'));
+            const spendingForm = document.getElementById('spending-form');
+            const totalAmount = document.getElementById('total-amount');
+            const currencySelect = document.getElementById('currency-select');
+
+            // Currency symbol mapping
+            const currencySymbols = {
+                'EUR': '€',
+                'USD': '$',
+                'EGP': 'E£'
+            };
+
+            selectedCategories.forEach(category => {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category-input';
+                categoryDiv.innerHTML = `
+                    <label>
+                        ${getCategoryIcon(category)}
+                        ${category}
+                    </label>
+                    <input type="number" placeholder="Enter amount" min="0" step="0.01" class="amount-input">
+                `;
+                spendingForm.appendChild(categoryDiv);
+            });
+
+            function getCategoryIcon(category) {
+                const icons = {
+                    'Food & Dining': 'fa-utensils',
+                    'Transportation': 'fa-bus',
+                    'Education': 'fa-graduation-cap',
+                    'Shopping': 'fa-shopping-bag',
+                    'Housing': 'fa-home',
+                    'Healthcare': 'fa-heartbeat',
+                    'Entertainment': 'fa-gamepad',
+                    'Other': 'fa-plus-circle'
+                };
+                return `<i class="fas ${icons[category] || 'fa-money-bill'}"></i>`;
+            }
+
+            // Update total when inputs or currency changes
+            function updateTotal() {
+                const inputs = document.querySelectorAll('.amount-input');
+                const total = Array.from(inputs)
+                    .reduce((sum, input) => sum + (Number(input.value) || 0), 0);
+                const symbol = currencySymbols[currencySelect.value];
+                totalAmount.textContent = `${symbol}${total.toFixed(2)}`;
+            }
+
+            spendingForm.addEventListener('input', updateTotal);
+            currencySelect.addEventListener('change', updateTotal);
+
+            // Save button handler
+            document.getElementById('save-btn').addEventListener('click', () => {
+                const planName = document.getElementById('plan-name').value.trim() || 'New Plan';
+                const spendingData = {};
+                const inputs = document.querySelectorAll('.category-input');
+                let total = 0;
+                
+                inputs.forEach(input => {
+                    const category = input.querySelector('label').textContent.trim();
+                    const amount = Number(input.querySelector('input').value) || 0;
+                    spendingData[category] = amount;
+                    total += amount;
+                });
+                
+                const planData = {
+                    name: planName,
+                    currency: currencySelect.value,
+                    categories: spendingData,
+                    total: total,
+                    date: new Date().toISOString()
+                };
+                
+                localStorage.setItem('firstPlan', JSON.stringify(planData));
+                window.location.href = 'homepage.html';
+            });
+        });
+    </script>
+</body>
+</html>

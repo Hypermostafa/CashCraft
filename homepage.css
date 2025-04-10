@@ -1,0 +1,800 @@
+:root {
+
+    --primary-color: #084f5a;
+    --secondary-color: #6099a5;
+    --hover-color: #555;
+    --background-color: #f9f9f9;
+    --text-color: #333;
+    --border-radius: 10px;
+    --transition-time: 0.3s;
+    --scrollbar-thumb-color: #888;
+    --scrollbar-track-color: #f1f1f1;
+    --loader-color: #f2f2f2;
+    --loader-border-color: #000;
+    --loader-border-top-color: transparent;
+    --header-padding: 2rem;
+    --nav-padding: 10px 0;
+    --about-us-text: #000;
+    --font-family: Arial, sans-serif;
+    --background-image: url('counting moeny.jpg');
+    --overlay-background: rgba(0, 0, 0, 0.5);
+} 
+
+
+
+
+.darkmode {
+    --sidebar-bg: #6099a5;
+    --sidebar-text: #ffffff;
+    --primary-color: #084f5a;
+    --secondary-color: #6099a5;
+    --hover-color: #555;
+    --background-color: #242e30;
+    --text-color: #f1f1f1;  /* Updated for better readability */
+    --card-bg: #2c3639;     /* Added for dashboard cards */
+    --border-radius: 10px;
+    --transition-time: 0.3s;
+    --scrollbar-thumb-color: #242e30;
+    --scrollbar-track-color: #f1f1f1;
+    --loader-color: #f2f2f2;
+    --loader-border-color: #242e30;
+    --about-us-text: #f1f1f1;
+    --loader-border-top-color: transparent;
+    --header-padding: 2rem;
+    --nav-padding: 10px 0;
+    --font-family: Arial, sans-serif;
+    --background-image: url('counting moeny.jpg');
+    --overlay-background: rgba(0, 0, 0, 0.5);
+}
+
+.sidebar {
+    background-color: var(--sidebar-bg);
+    color: var(--text-color, #666);
+}
+
+.main-content {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.no-plans-container {
+    background-color: var(--card-bg, white);
+    color: var(--text-color);
+}
+
+.sidebar nav ul li:not(.active) a {
+    color: var(--text-color);
+}
+
+.sidebar nav ul li:not(.active) a:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+/* Update sidebar styles */
+.darkmode .sidebar {
+    background-color: var(--sidebar-bg);
+}
+
+.darkmode .sidebar .logo {
+    color: var(--sidebar-text);
+}
+
+.darkmode .sidebar nav ul li a {
+    color: var(--sidebar-text);
+}
+
+.darkmode .sidebar nav ul li:not(.active) a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--sidebar-text);
+}
+
+.darkmode .user-profile {
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.darkmode .user-profile .username {
+    color: var(--sidebar-text);
+}
+
+.user-actions button {
+    color: var(--text-color);
+}
+:root {
+    --primary-color: #084f5a;
+    --secondary-color: #6099a5;
+    --background-color: #f5f6fa;
+    --sidebar-width: 250px;
+    --header-height: 70px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    display: flex;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: white;
+    padding: 20px;
+    position: fixed;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: #666;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.sidebar nav ul li a i {
+    margin-right: 10px;
+}
+
+.sidebar nav ul li.active a {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.sidebar nav ul li:not(.active) a:hover {
+    background-color: #f5f5f5;
+    color: var(--primary-color);
+}
+
+.user-profile {
+    margin-top: auto;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reduced gap between elements */
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 0; /* Remove the right margin */
+}
+
+.username {
+    flex: 1;
+    margin-right: auto; /* Push logout button to the right while keeping name close to avatar */
+}
+
+.logout-btn {
+    margin-left: auto; /* Pushes the logout button to the far right */
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 20px;
+    width: calc(100% - var(--sidebar-width));
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.user-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.user-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff4757;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.no-plans-container {
+    text-align: center;
+    padding: 50px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.empty-state-image {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.add-plan-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.add-plan-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+        padding: 20px 10px;
+    }
+
+    .logo span, .username {
+        display: none;
+    }
+
+    .sidebar nav ul li a span {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+}
+
+
+/* Update the dark mode styles for the container */
+.darkmode .no-plans-container {
+    background-color: #2c3639;
+    color: #f1f1f1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.darkmode .no-plans-container h2 {
+    color: #f1f1f1;
+}
+
+.darkmode .no-plans-container p {
+    color: #f1f1f1;
+}
+
+.darkmode .add-plan-btn {
+    background-color: var(--secondary-color);
+    color: #f1f1f1;
+}
+
+.darkmode .add-plan-btn:hover {
+    background-color: var(--primary-color);
+    opacity: 0.9;
+}
+
+.darkmode .header h1 {
+    color: #6099a5;
+}
+
+.darkmode .main-content h1 {
+    color: #6099a5;
+}
+.logout-btn {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #ff6b81;
+}
+
+.darkmode .logout-btn {
+    background-color: #ff4757;
+    color: white;
+}
+
+.plans-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.plan-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    min-width: 250px;
+    max-width: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.plan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.plan-header h3 {
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.date {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.progress-circle {
+    width: 100px;
+    height: 100px;
+    margin: 15px auto;
+}
+
+.circular-chart {
+    width: 100%;
+    height: 100%;
+}
+
+.circular-chart path {
+    fill: none;
+    stroke: var(--secondary-color);
+    stroke-width: 2.8;
+    stroke-linecap: round;
+}
+
+.plan-details {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.add-plan-card {
+    min-width: 250px;
+    max-width: 300px;
+    height: 200px;
+    border: 2px dashed var(--secondary-color);
+    border-radius: 15px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap: 10px;
+    color: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.add-plan-card:hover {
+    background: rgba(96, 153, 165, 0.1);
+}
+
+.add-plan-card i {
+    font-size: 2em;
+}
+
+/* Dark mode styles */
+.darkmode .plan-card {
+    background: #2c3639;
+}
+
+.darkmode .plan-header h3 {
+    color: var(--secondary-color);
+}
+
+.darkmode .date {
+    color: #ccc;
+}
+
+.darkmode .add-plan-card {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.darkmode .add-plan-card:hover {
+    background: rgba(96, 153, 165, 0.2);
+}
+
+@media (max-width: 768px) {
+    .plans-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 20px 10px;
+    }
+}
+.plan-card {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.plan-card:hover .plan-actions {
+    opacity: 1;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.darkmode .plan-actions {
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.action-btn:hover {
+    background: rgba(96, 153, 165, 0.1);
+    color: var(--primary-color);
+}
+
+.delete-btn:hover {
+    color: #ff4757;
+}
+
+.darkmode .action-btn:hover {
+    background: rgba(96, 153, 165, 0.2);
+}
+.rename-input {
+    display: none;
+    border: none;
+    border-bottom: 2px solid var(--secondary-color);
+    background: transparent;
+    color: var(--primary-color);
+    font-size: 1.17em;
+    font-weight: bold;
+    padding: 2px 5px;
+    width: 150px;
+}
+
+.darkmode .rename-input {
+    color: var(--secondary-color);
+    border-bottom-color: var(--secondary-color);
+}
+/* Add these styles for the confirmation dialog */
+.confirm-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--card-background, white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.dialog-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.confirm-btn {
+    background-color: #ff4757;
+    color: white;
+}
+
+.cancel-btn {
+    background-color: #384548;
+    color: white;
+}
+
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Dark mode support */
+.darkmode .confirm-dialog {
+    background: #2c3639;
+    color: #f1f1f1;
+}
+
+.darkmode .cancel-btn:hover {
+    background-color: #4a5a5e;
+}
+
+.darkmode .confirm-btn:hover {
+    background-color: #ff6b81;
+}
+
+/* Add after your existing styles */
+.dashboard-redirect-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1000;
+    max-width: 400px;
+    width: 90%;
+}
+
+.dashboard-redirect-message h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.dashboard-redirect-message p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.redirect-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.redirect-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.create-plan-redirect {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.create-plan-redirect:hover {
+    background-color: var(--secondary-color);
+}
+
+.cancel-redirect {
+    background-color: #e0e0e0;
+    color: #666;
+}
+
+.cancel-redirect:hover {
+    background-color: #d0d0d0;
+}
+
+/* Dashboard redirect message styles */
+.message-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-redirect-message {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.dashboard-redirect-message h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.dashboard-redirect-message p {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.redirect-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.redirect-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.create-plan-redirect {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.create-plan-redirect:hover {
+    background-color: var(--secondary-color);
+}
+
+.cancel-redirect {
+    background-color: #e0e0e0;
+    color: #666;
+}
+
+.cancel-redirect:hover {
+    background-color: #d0d0d0;
+}
+
+/* Dark mode support */
+.darkmode .dashboard-redirect-message {
+    background: #2c3639;
+}
+
+.darkmode .dashboard-redirect-message h3 {
+    color: var(--secondary-color);
+}
+
+.darkmode .dashboard-redirect-message p {
+    color: #f1f1f1;
+}
+
+.darkmode .cancel-redirect {
+    background-color: #384548;
+    color: #f1f1f1;
+}
+
+.darkmode .cancel-redirect:hover {
+    background-color: #4a5a5e;
+}
+
+/* Dashboard Styles */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transition: width 0.3s ease;
+}
+
+/* Dark mode support for dashboard */
+.darkmode .stat-card {
+    background: var(--card-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.darkmode .stat-card h3 {
+    color: var(--secondary-color);
+}
+
+.darkmode .stat-value {
+    color: #ffffff;
+}
+
+.darkmode .progress-bar {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.darkmode .progress {
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+}
