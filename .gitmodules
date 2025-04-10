@@ -1,0 +1,3 @@
+[submodule "cashcraft"]
+    path = cashcraft
+    url = https://github.com/<owner>/<repository>
